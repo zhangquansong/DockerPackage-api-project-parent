@@ -8,7 +8,7 @@ spring:
   application:
     name: api-web
   zipkin:
-    base-url: http://localhost:9411
+    base-url: http://server-zipkin:9411
   profiles:
     active: ${profiles.active}
   datasource:
