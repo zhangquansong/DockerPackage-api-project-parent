@@ -1,0 +1,30 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-server:8761/eureka/,http://eureka-server-2:8762/eureka/,http://eureka-server-3:8763/eureka/
+server:
+  port: 8782
+spring:
+  application:
+    name: api-web
+  zipkin:
+    base-url: http://localhost:9411
+  profiles:
+    active: ${profiles.active}
+  datasource:
+    url: jdbc:mysql://10.0.131.236:8066/TESTDB
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+
+mybatis:
+
+  type-aliases-package: com.clt.api.entity
+
+  mapper-locations: classpath*:/mybaits/*Mapper.xml
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: countSql
