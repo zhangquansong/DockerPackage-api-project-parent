@@ -11,11 +11,17 @@ spring:
     base-url: http://server-zipkin:9411
   profiles:
     active: ${profiles.active}
+#  datasource:
+#    url: jdbc:mysql://10.0.131.236:8066/TESTDB
+#    driver-class-name: com.mysql.jdbc.Driver
+#    username: root
+#    password: 123456
+
   datasource:
-    url: jdbc:mysql://10.0.131.236:8066/TESTDB
-    driver-class-name: com.mysql.jdbc.Driver
-    username: root
-    password: 123456
+      url: jdbc:mysql://localhost:3306/test
+      driver-class-name: com.mysql.jdbc.Driver
+      username: root
+      password: password
 
 mybatis:
 
@@ -23,8 +29,18 @@ mybatis:
 
   mapper-locations: classpath*:/mybaits/*Mapper.xml
 
+
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params: countSql
+
+logging:
+  level:
+     com.clt.api.dao: debug
+
+
+
+
+
