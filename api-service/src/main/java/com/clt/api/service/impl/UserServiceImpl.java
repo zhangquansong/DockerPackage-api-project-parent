@@ -1,9 +1,10 @@
 package com.clt.api.service.impl;
 
-import com.clt.api.dao.TestUserDao;
+import com.clt.api.dao.UserMapper;
 import com.clt.api.entity.User;
+import com.clt.api.entity.UserExample;
 import com.clt.api.service.UserService;
-import com.github.pagehelper.Page;
+import com.clt.api.utils.PageInfo;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private TestUserDao testUserDao;
-
-    @Override
-    public List<User> findAll() {
-        return testUserDao.findAll();
-    }
+    private UserMapper userMapper;
 
     /**
      * 分页查询
@@ -29,18 +25,12 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public Page<User> findByPage(int pageNo, int pageSize) {
+    public PageInfo<User> findByPage(int pageNo, int pageSize) {
         PageHelper.startPage(pageNo, pageSize);
-        return testUserDao.findByPage();
+        List<User> userList = userMapper.selectByExample(new UserExample());
+        // 需要把Page包装成PageInfo对象才能序列化。该插件也默认实现了一个PageInfo
+        PageInfo<User> pageInfo = new PageInfo<>(userList);
+        return pageInfo;
     }
 
-    @Override
-    public User selectByPrimaryKey(Long id) {
-        return testUserDao.selectByPrimaryKey(id);
-    }
-
-    @Override
-    public void insert(User user) {
-        testUserDao.insert(user);
-    }
 }

@@ -1,8 +1,9 @@
 package com.clt.api.entity;
 
-public class User {
+import java.io.Serializable;
 
-    private Long id;
+public class User implements Serializable {
+    private Integer id;
 
     private String username;
 
@@ -12,32 +13,34 @@ public class User {
 
     private String balance;
 
-    public Long getId() {
-        return this.id;
+    private static final long serialVersionUID = 1L;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.username = username == null ? null : username.trim();
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public Integer getAge() {
-        return this.age;
+        return age;
     }
 
     public void setAge(Integer age) {
@@ -45,22 +48,10 @@ public class User {
     }
 
     public String getBalance() {
-        return this.balance;
+        return balance;
     }
 
     public void setBalance(String balance) {
-        this.balance = balance;
-    }
-
-    public User(Long id, String username, String name, Integer age, String balance) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.age = age;
-        this.balance = balance;
-    }
-
-    public User() {
-        super();
+        this.balance = balance == null ? null : balance.trim();
     }
 }

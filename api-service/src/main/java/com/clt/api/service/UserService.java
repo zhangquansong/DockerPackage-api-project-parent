@@ -1,14 +1,10 @@
 package com.clt.api.service;
 
 import com.clt.api.entity.User;
-import com.github.pagehelper.Page;
-
-import java.util.List;
+import com.clt.api.utils.PageInfo;
 
 
 public interface UserService {
-
-    List<User> findAll();
 
     /**
      * 分页查询
@@ -17,9 +13,6 @@ public interface UserService {
      * @param pageSize 每页显示记录数
      * @return
      */
-    Page<User> findByPage(int pageNo, int pageSize);
+    PageInfo<User> findByPage(int pageNo, int pageSize);
 
-    User selectByPrimaryKey(Long id);
-
-    void insert(User person);
 }
