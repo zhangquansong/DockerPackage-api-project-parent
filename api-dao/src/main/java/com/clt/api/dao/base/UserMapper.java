@@ -1,9 +1,7 @@
-package com.clt.api.dao;
+package com.clt.api.dao.base;
 
 import com.clt.api.entity.User;
 import com.clt.api.entity.UserExample;
-import com.github.pagehelper.Page;
-
 import java.util.List;
 
 public interface UserMapper {
@@ -22,6 +20,4 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-
-    Page<User> selectUserByPage();
 }

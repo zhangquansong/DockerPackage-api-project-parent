@@ -1,7 +1,7 @@
 package com.clt.api.service;
 
 import com.clt.api.entity.User;
-import com.clt.api.utils.PageInfo;
+import com.github.pagehelper.Page;
 
 
 public interface UserService {
@@ -13,6 +13,6 @@ public interface UserService {
      * @param pageSize 每页显示记录数
      * @return
      */
-    PageInfo<User> findByPage(int pageNo, int pageSize);
+    Page<User> findByPage(int pageNo, int pageSize);
 
 }

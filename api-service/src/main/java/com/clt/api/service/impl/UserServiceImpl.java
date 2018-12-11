@@ -1,21 +1,18 @@
 package com.clt.api.service.impl;
 
-import com.clt.api.dao.UserMapper;
+import com.clt.api.dao.UserExtendMapper;
 import com.clt.api.entity.User;
-import com.clt.api.entity.UserExample;
 import com.clt.api.service.UserService;
-import com.clt.api.utils.PageInfo;
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
-    private UserMapper userMapper;
+    private UserExtendMapper userExtendMapper;
 
     /**
      * 分页查询
@@ -25,12 +22,10 @@ public class UserServiceImpl implements UserService {
      * @return
      */
     @Override
-    public PageInfo<User> findByPage(int pageNo, int pageSize) {
+    public Page<User> findByPage(int pageNo, int pageSize) {
         PageHelper.startPage(pageNo, pageSize);
-        List<User> userList = userMapper.selectByExample(new UserExample());
-        // 需要把Page包装成PageInfo对象才能序列化。该插件也默认实现了一个PageInfo
-        PageInfo<User> pageInfo = new PageInfo<>(userList);
-        return pageInfo;
+        Page<User> userList = userExtendMapper.selectUserByPage();
+        return userList;
     }
 
 }
