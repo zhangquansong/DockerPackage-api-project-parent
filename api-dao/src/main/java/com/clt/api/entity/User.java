@@ -1,8 +1,15 @@
 package com.clt.api.entity;
 
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import lombok.Data;
+
 import java.io.Serializable;
 
+@Data
+@TableName("user")
 public class User implements Serializable {
+    @TableId("id")
     private Integer id;
 
     private String username;

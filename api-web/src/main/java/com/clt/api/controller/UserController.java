@@ -2,7 +2,7 @@ package com.clt.api.controller;
 
 import com.clt.api.annotation.LoginUser;
 import com.clt.api.entity.User;
-import com.clt.api.service.impl.UserServiceImpl;
+import com.clt.api.service.UserService;
 import com.clt.api.utils.PageInfo;
 import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @GetMapping("/simple/listPage")
     public String list() {
