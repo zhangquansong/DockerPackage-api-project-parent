@@ -8,7 +8,7 @@ import lombok.Data;
  * @since 2019-01-02
  */
 @Data
-public class ZjyRoleParam implements Serializable {
+public class ZjyDeptParam implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

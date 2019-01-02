@@ -1,6 +1,8 @@
 package com.clt.api.entity;
 
+import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -12,7 +14,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 组织部门表
  * </p>
  *
  * @author zhangquansong
@@ -20,57 +22,39 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-@TableName("zjy_role")
-public class ZjyRole extends Model<ZjyRole> {
+@TableName("zjy_dept")
+public class ZjyDept extends Model<ZjyDept> {
 
     private static final long serialVersionUID = 1L;
 
+	@TableId(value="id", type= IdType.AUTO)
 	private Long id;
-    /**
-     * 角色名称
-     */
-	@TableField("zjy_role_name")
-	private String zjyRoleName;
-    /**
-     * 角色描述
-     */
-	@TableField("zjy_role_desc")
-	private String zjyRoleDesc;
-    /**
-     * 角色权限内容json
-     */
-	@TableField("zjy_right_detail")
-	private String zjyRightDetail;
-    /**
-     * 所属组
-     */
-	@TableField("zjy_group_id")
-	private Long zjyGroupId;
-    /**
-     * 集团id
-     */
+	@TableField("zjy_dept_name")
+	private String zjyDeptName;
 	@TableField("zjy_company_id")
 	private Long zjyCompanyId;
+	@TableField("zjy_dept_level")
+	private Integer zjyDeptLevel;
+	@TableField("zjy_parent_id")
+	private Long zjyParentId;
+	@TableField("zjy_dept_order")
+	private Integer zjyDeptOrder;
+	@TableField("zjy_dept_desc")
+	private String zjyDeptDesc;
+	@TableField("zjy_mamager_id")
+	private String zjyMamagerId;
 	@TableField("zjy_create_people")
 	private String zjyCreatePeople;
 	@TableField("zjy_create_time")
 	private Date zjyCreateTime;
-	@TableField("zjy_modify_people")
-	private String zjyModifyPeople;
+	@TableField("zjy_modity_people")
+	private byte[] zjyModityPeople;
 	@TableField("zjy_modify_time")
 	private Date zjyModifyTime;
-    /**
-     * 1锛氬凡鍒犻櫎 0锛氭湭鍒犻櫎
-     */
 	@TableField("zjy_deleted")
 	private Integer zjyDeleted;
-    /**
-     * 绉熸埛id
-     */
 	@TableField("zjy_tenant_id")
 	private Integer zjyTenantId;
-	@TableField("zjy_sys_code")
-	private String zjySysCode;
 
 
 	@Override
@@ -80,20 +64,21 @@ public class ZjyRole extends Model<ZjyRole> {
 
 	@Override
 	public String toString() {
-		return "ZjyRole{" +
+		return "ZjyDept{" +
 			"id=" + id +
-			", zjyRoleName=" + zjyRoleName +
-			", zjyRoleDesc=" + zjyRoleDesc +
-			", zjyRightDetail=" + zjyRightDetail +
-			", zjyGroupId=" + zjyGroupId +
+			", zjyDeptName=" + zjyDeptName +
 			", zjyCompanyId=" + zjyCompanyId +
+			", zjyDeptLevel=" + zjyDeptLevel +
+			", zjyParentId=" + zjyParentId +
+			", zjyDeptOrder=" + zjyDeptOrder +
+			", zjyDeptDesc=" + zjyDeptDesc +
+			", zjyMamagerId=" + zjyMamagerId +
 			", zjyCreatePeople=" + zjyCreatePeople +
 			", zjyCreateTime=" + zjyCreateTime +
-			", zjyModifyPeople=" + zjyModifyPeople +
+			", zjyModityPeople=" + zjyModityPeople +
 			", zjyModifyTime=" + zjyModifyTime +
 			", zjyDeleted=" + zjyDeleted +
 			", zjyTenantId=" + zjyTenantId +
-			", zjySysCode=" + zjySysCode +
 			"}";
 	}
 }

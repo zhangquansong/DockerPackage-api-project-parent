@@ -1,15 +1,15 @@
 package com.clt.api.controller;
 
-import com.clt.api.service.ZjyRoleService;
+import com.clt.api.service.ZjyDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.clt.api.param.ZjyRoleParam;
+import com.clt.api.param.ZjyDeptParam;
 import com.clt.api.utils.RestResult;
 import java.util.List;
-import com.clt.api.entity.ZjyRole;
+import com.clt.api.entity.ZjyDept;
 import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,23 +19,23 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-01-02
  */
 @RestController
-@RequestMapping("/zjyRole")
-public class ZjyRoleController  {
+@RequestMapping("/zjyDept")
+public class ZjyDeptController  {
 
     @Autowired
-    private  ZjyRoleService zjyRoleService;
+    private  ZjyDeptService zjyDeptService;
 
     /**
      * 新增
      *
-     * @param zjyRoleParam
+     * @param zjyDeptParam
      */
     @PostMapping("/create")
     @ResponseBody
-    public RestResult create(@RequestBody ZjyRoleParam zjyRoleParam) {
-        ZjyRole zjyRole=new ZjyRole();
-        BeanUtils.copyProperties(zjyRoleParam, ZjyRole.class);
-        zjyRoleService.create(zjyRole);
+    public RestResult create(@RequestBody ZjyDeptParam zjyDeptParam) {
+        ZjyDept zjyDept=new ZjyDept();
+        BeanUtils.copyProperties(zjyDeptParam, ZjyDept.class);
+        zjyDeptService.create(zjyDept);
         return RestResult.successResponse();
     }
 
@@ -47,21 +47,21 @@ public class ZjyRoleController  {
     @PostMapping("/delete")
     @ResponseBody
     public RestResult delete(Integer id) {
-        zjyRoleService.delete(id);
+        zjyDeptService.delete(id);
         return RestResult.successResponse();
     }
 
     /**
      * 修改
      *
-     * @param zjyRoleParam
+     * @param zjyDeptParam
      */
     @PostMapping("/edit")
     @ResponseBody
-    public RestResult edit(@RequestBody ZjyRoleParam zjyRoleParam) {
-        ZjyRole zjyRole=new ZjyRole();
-        BeanUtils.copyProperties(zjyRoleParam, ZjyRole.class);
-        zjyRoleService.edit(zjyRole);
+    public RestResult edit(@RequestBody ZjyDeptParam zjyDeptParam) {
+        ZjyDept zjyDept=new ZjyDept();
+        BeanUtils.copyProperties(zjyDeptParam, ZjyDept.class);
+        zjyDeptService.edit(zjyDept);
         return RestResult.successResponse();
     }
 
@@ -72,8 +72,8 @@ public class ZjyRoleController  {
      */
     @PostMapping("/listAll")
     @ResponseBody
-    public RestResult<List<ZjyRole>> listAll() {
-       return RestResult.successResponse(zjyRoleService.listAll());
+    public RestResult<List<ZjyDept>> listAll() {
+       return RestResult.successResponse(zjyDeptService.listAll());
     }
 
     /**
@@ -84,8 +84,8 @@ public class ZjyRoleController  {
     */
     @PostMapping("/findById")
     @ResponseBody
-    public RestResult<ZjyRole> findById(Integer id) {
-        return RestResult.successResponse(zjyRoleService.findById(id));
+    public RestResult<ZjyDept> findById(Integer id) {
+        return RestResult.successResponse(zjyDeptService.findById(id));
     }
 
 }

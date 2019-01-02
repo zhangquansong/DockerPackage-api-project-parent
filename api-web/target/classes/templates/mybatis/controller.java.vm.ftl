@@ -1,12 +1,13 @@
 package ${package.Controller};
 
-import com.clt.api.service.ZjyRoleService;
+import com.clt.api.service.${table.serviceName};
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.clt.api.param.${entity}Param;
+import com.clt.api.utils.RestResult;
 import java.util.List;
 import ${package.Entity}.${entity};
 import org.springframework.beans.BeanUtils;
@@ -31,11 +32,11 @@ public class ${table.controllerName}  {
      */
     @PostMapping("/create")
     @ResponseBody
-    public void create(@RequestBody ${entity}Param ${table.entityPath}Param) {
+    public RestResult create(@RequestBody ${entity}Param ${table.entityPath}Param) {
         ${entity} ${table.entityPath}=new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Param, ${entity}.class);
-
         ${table.entityPath}Service.create(${table.entityPath});
+        return RestResult.successResponse();
     }
 
     /**
@@ -45,8 +46,9 @@ public class ${table.controllerName}  {
      */
     @PostMapping("/delete")
     @ResponseBody
-    public void delete(Integer id) {
+    public RestResult delete(Integer id) {
         ${table.entityPath}Service.delete(id);
+        return RestResult.successResponse();
     }
 
     /**
@@ -56,10 +58,11 @@ public class ${table.controllerName}  {
      */
     @PostMapping("/edit")
     @ResponseBody
-    public void edit(@RequestBody ${entity}Param ${table.entityPath}Param) {
+    public RestResult edit(@RequestBody ${entity}Param ${table.entityPath}Param) {
         ${entity} ${table.entityPath}=new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}Param, ${entity}.class);
         ${table.entityPath}Service.edit(${table.entityPath});
+        return RestResult.successResponse();
     }
 
     /**
@@ -69,8 +72,8 @@ public class ${table.controllerName}  {
      */
     @PostMapping("/listAll")
     @ResponseBody
-    public List<${entity}> listAll() {
-        return ${table.entityPath}Service.listAll();
+    public RestResult<List<${entity}>> listAll() {
+       return RestResult.successResponse(${table.entityPath}Service.listAll());
     }
 
     /**
@@ -81,8 +84,8 @@ public class ${table.controllerName}  {
     */
     @PostMapping("/findById")
     @ResponseBody
-    public ${entity} findById(Integer id) {
-        return ${table.entityPath}Service.findById(id);
+    public RestResult<${entity}> findById(Integer id) {
+        return RestResult.successResponse(${table.entityPath}Service.findById(id));
     }
 
 }

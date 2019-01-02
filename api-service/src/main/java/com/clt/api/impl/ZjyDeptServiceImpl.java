@@ -1,10 +1,10 @@
 package com.clt.api.impl;
 
-import com.clt.api.entity.ZjyRole;
-import com.clt.api.mapper.ZjyRoleMapper;
-import com.clt.api.service.ZjyRoleService;
+import com.clt.api.entity.ZjyDept;
+import com.clt.api.mapper.ZjyDeptMapper;
+import com.clt.api.service.ZjyDeptService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.clt.api.param.ZjyRoleParam;
+import com.clt.api.param.ZjyDeptParam;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,21 +17,21 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ZjyRoleServiceImpl extends ServiceImpl<ZjyRoleMapper, ZjyRole> implements ZjyRoleService {
+public class ZjyDeptServiceImpl extends ServiceImpl<ZjyDeptMapper, ZjyDept> implements ZjyDeptService {
 
 
     @Autowired
-    private ZjyRoleMapper zjyRoleMapper;
+    private ZjyDeptMapper zjyDeptMapper;
 
 
     /**
      * 新增
      *
-     * @param zjyRole
+     * @param zjyDept
      */
     @Override
-    public void create(ZjyRole zjyRole) {
-        this.insertOrUpdate(zjyRole);
+    public void create(ZjyDept zjyDept) {
+        this.insertOrUpdate(zjyDept);
     }
 
     /**
@@ -47,11 +47,11 @@ public class ZjyRoleServiceImpl extends ServiceImpl<ZjyRoleMapper, ZjyRole> impl
     /**
      * 修改
      *
-     * @param zjyRole
+     * @param zjyDept
      */
     @Override
-    public void edit(ZjyRole zjyRole) {
-        this.updateById(zjyRole);
+    public void edit(ZjyDept zjyDept) {
+        this.updateById(zjyDept);
     }
 
     /**
@@ -60,7 +60,7 @@ public class ZjyRoleServiceImpl extends ServiceImpl<ZjyRoleMapper, ZjyRole> impl
      * @return
      */
     @Override
-    public List<ZjyRole> listAll() {
+    public List<ZjyDept> listAll() {
         return this.selectList(null);
     }
 
@@ -71,7 +71,7 @@ public class ZjyRoleServiceImpl extends ServiceImpl<ZjyRoleMapper, ZjyRole> impl
     * @return
     */
     @Override
-    public ZjyRole findById(Integer id) {
+    public ZjyDept findById(Integer id) {
         return this.selectById(id);
     }
 

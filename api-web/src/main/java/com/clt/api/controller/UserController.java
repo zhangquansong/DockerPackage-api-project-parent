@@ -1,5 +1,6 @@
 package com.clt.api.controller;
 
+import com.clt.api.annotation.Login;
 import com.clt.api.annotation.LoginUser;
 import com.clt.api.entity.User;
 import com.clt.api.service.UserService;
@@ -33,6 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/user/getUser")
+    @Login
     public User getUser(@LoginUser User user) {
         return user;
     }

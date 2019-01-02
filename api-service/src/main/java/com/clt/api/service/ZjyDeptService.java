@@ -1,8 +1,8 @@
 package com.clt.api.service;
 
-import com.clt.api.entity.ZjyRole;
+import com.clt.api.entity.ZjyDept;
 import com.baomidou.mybatisplus.service.IService;
-import com.clt.api.param.ZjyRoleParam;
+import com.clt.api.param.ZjyDeptParam;
 
 import java.util.List;
 
@@ -10,14 +10,14 @@ import java.util.List;
  * @author zhangquansong
  * @since 2019-01-02
  */
-public interface ZjyRoleService extends IService<ZjyRole> {
+public interface ZjyDeptService extends IService<ZjyDept> {
 
     /**
      * 新增
      *
-     * @param zjyRole
+     * @param zjyDept
      */
-    void create(ZjyRole zjyRole);
+    void create(ZjyDept zjyDept);
 
     /**
      * 删除
@@ -29,9 +29,9 @@ public interface ZjyRoleService extends IService<ZjyRole> {
     /**
      * 修改
      *
-     * @param zjyRole
+     * @param zjyDept
      */
-    void edit(ZjyRole zjyRole);
+    void edit(ZjyDept zjyDept);
 
 
     /**
@@ -39,7 +39,7 @@ public interface ZjyRoleService extends IService<ZjyRole> {
      *
      * @return
      */
-    List<ZjyRole> listAll();
+    List<ZjyDept> listAll();
 
     /**
     * 通过id获取数据
@@ -47,5 +47,5 @@ public interface ZjyRoleService extends IService<ZjyRole> {
     * @param id 主键id
     * @return
     */
-    ZjyRole findById(Integer id);
+    ZjyDept findById(Integer id);
 }
