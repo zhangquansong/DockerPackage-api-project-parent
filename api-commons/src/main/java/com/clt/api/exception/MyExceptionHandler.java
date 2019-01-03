@@ -25,13 +25,13 @@ import java.util.List;
  */
 @Slf4j
 @RestControllerAdvice
-public class MlcExceptionHandler {
+public class MyExceptionHandler {
 
     /**
      * 处理自定义异常
      */
-    @ExceptionHandler(MlcException.class)
-    public RestResult handleRRException(MlcException e) {
+    @ExceptionHandler(MyException.class)
+    public RestResult handleRRException(MyException e) {
         writeLog("MlcException", e);
         return RestResult.errorResponse(e.getCode(), e.getMessage());
     }

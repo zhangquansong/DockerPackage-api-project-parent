@@ -5,7 +5,7 @@ package com.clt.api.exception;
  * @date 2018年5月12日 下午2:55:19
  * @author wangj@boruijinfu.com
  */
-public class RequestLimitException extends MlcException {
+public class RequestLimitException extends MyException {
     private static final long serialVersionUID = 1364225358754654702L;
 
     public RequestLimitException() {

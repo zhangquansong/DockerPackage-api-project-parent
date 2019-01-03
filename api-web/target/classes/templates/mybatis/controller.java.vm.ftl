@@ -14,6 +14,7 @@ import ${package.Entity}.${entity};
 import org.springframework.beans.BeanUtils;
 import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -35,9 +36,9 @@ public class ${table.controllerName}  {
     @PostMapping("/create")
     @ResponseBody
     public RestResult create(@Valid @RequestBody ${entity}CreateParam ${table.entityPath}CreateParam) {
-        ${entity} ${table.entityPath}=new ${entity}();
+${entity} ${table.entityPath}=new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}CreateParam, ${table.entityPath});
-        ${table.entityPath}Service.create(${table.entityPath});
+${table.entityPath}Service.create(${table.entityPath});
         return RestResult.successResponse();
     }
 
@@ -49,7 +50,7 @@ public class ${table.controllerName}  {
     @PostMapping("/delete")
     @ResponseBody
     public RestResult delete(Integer id) {
-        ${table.entityPath}Service.delete(id);
+${table.entityPath}Service.delete(id);
         return RestResult.successResponse();
     }
 
@@ -61,9 +62,9 @@ public class ${table.controllerName}  {
     @PostMapping("/edit")
     @ResponseBody
     public RestResult edit(@Valid @RequestBody ${entity}EditParam ${table.entityPath}EditParam) {
-        ${entity} ${table.entityPath}=new ${entity}();
+${entity} ${table.entityPath}=new ${entity}();
         BeanUtils.copyProperties(${table.entityPath}EditParam, ${table.entityPath});
-        ${table.entityPath}Service.edit(${table.entityPath});
+${table.entityPath}Service.edit(${table.entityPath});
         return RestResult.successResponse();
     }
 
@@ -74,7 +75,8 @@ public class ${table.controllerName}  {
      */
     @PostMapping("/listAll")
     @ResponseBody
-    public RestResult<List<${entity}>> listAll() {
+    public RestResult
+<List<${entity}>> listAll() {
        return RestResult.successResponse(${table.entityPath}Service.listAll());
     }
 
@@ -86,7 +88,7 @@ public class ${table.controllerName}  {
     */
     @PostMapping("/findById")
     @ResponseBody
-    public RestResult<${entity}> findById(@RequestBody Integer id) {
+    public RestResult<${entity}> findById(@Param("id") Integer id) {
         return RestResult.successResponse(${table.entityPath}Service.findById(id));
     }
 

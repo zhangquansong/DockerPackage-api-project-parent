@@ -23,7 +23,7 @@ public class FilterExceptionHelper {
      */
     public static void handleBizException(BizException bz, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setStatus(HttpStatus.FORBIDDEN.value());
-        MlcExceptionHandler.sendErrorMessage(bz.getMessage(), request, response);
+        MyExceptionHandler.sendErrorMessage(bz.getMessage(), request, response);
     }
 
     /**
@@ -36,7 +36,7 @@ public class FilterExceptionHelper {
      */
     public static void handleBizException(BizException bz, int httpStatus, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setStatus(httpStatus);
-        MlcExceptionHandler.sendErrorMessage(bz.getMessage(), request, response);
+        MyExceptionHandler.sendErrorMessage(bz.getMessage(), request, response);
     }
 
 }
