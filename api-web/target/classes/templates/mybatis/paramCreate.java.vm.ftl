@@ -4,11 +4,11 @@ import java.io.Serializable;
 import lombok.Data;
 
 /**
- * @author zhangquansong
- * @since 2019-01-02
+ * @author ${author}
+ * @since ${date}
  */
 @Data
-public class ZjyDeptParam implements Serializable {
+public class ${entity}CreateParam implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

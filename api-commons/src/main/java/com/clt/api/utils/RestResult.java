@@ -46,6 +46,10 @@ public class RestResult<T> implements Serializable {
                 RestConstants.getMessageByCode(RestConstants.ERROR.getCode()).getMessage());
     }
 
+    public static <T> RestResult<T> errorResponse(Integer code, String message) {
+        return new RestResult(code, message);
+    }
+
 
     public Integer getCode() {
         return code;

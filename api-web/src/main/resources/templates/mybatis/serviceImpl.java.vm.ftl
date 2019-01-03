@@ -4,7 +4,6 @@ import ${package.Entity}.${entity};
 import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
-import com.clt.api.param.${entity}Param;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +21,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
 
     @Autowired
     private ${table.mapperName} ${table.entityPath}Mapper;
+
 
 
     /**

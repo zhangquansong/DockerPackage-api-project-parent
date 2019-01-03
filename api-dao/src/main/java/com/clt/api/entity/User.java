@@ -1,64 +1,92 @@
 package com.clt.api.entity;
 
+import com.baomidou.mybatisplus.enums.IdType;
+import java.math.BigDecimal;
+import java.util.Date;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import lombok.Data;
-
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.activerecord.Model;
 import java.io.Serializable;
+import com.baomidou.mybatisplus.enums.FieldFill;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 用户信息表
+ * </p>
+ *
+ * @author zhangquansong
+ * @since 2019-01-03
+ */
 @Data
-@TableName("user")
-public class User implements Serializable {
-    @TableId("id")
-    private Integer id;
-
-    private String username;
-
-    private String name;
-
-    private Integer age;
-
-    private String balance;
+@Accessors(chain = true)
+public class User extends Model<User> {
 
     private static final long serialVersionUID = 1L;
 
-    public Integer getId() {
-        return id;
-    }
+	@TableId(value="id", type= IdType.AUTO)
+	private Long id;
+	@TableField("user_login_name")
+	private String userLoginName;
+	@TableField("user_name")
+	private String userName;
+	@TableField("user_phone")
+	private String userPhone;
+	@TableField("user_sex")
+	private Integer userSex;
+	@TableField("user_id_card")
+	private String userIdCard;
+	@TableField("user_face")
+	private String userFace;
+	@TableField("user_code")
+	private String userCode;
+	@TableField("user_type")
+	private Integer userType;
+	@TableField("user_password")
+	private String userPassword;
+	@TableField("user_asset")
+	private BigDecimal userAsset;
+	@TableField("user_address")
+	private String userAddress;
+	@TableField("user_longin_last_time")
+	private Date userLonginLastTime;
+	@TableField("user_status")
+	private Integer userStatus;
+	@TableField("create_time")
+	private Date createTime;
+	@TableField("update_time")
+	private Date updateTime;
+	@TableField("user_version")
+	private Long userVersion;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getUsername() {
-        return username;
-    }
+	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
 
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance == null ? null : balance.trim();
-    }
+	@Override
+	public String toString() {
+		return "User{" +
+			"id=" + id +
+			", userLoginName=" + userLoginName +
+			", userName=" + userName +
+			", userPhone=" + userPhone +
+			", userSex=" + userSex +
+			", userIdCard=" + userIdCard +
+			", userFace=" + userFace +
+			", userCode=" + userCode +
+			", userType=" + userType +
+			", userPassword=" + userPassword +
+			", userAsset=" + userAsset +
+			", userAddress=" + userAddress +
+			", userLonginLastTime=" + userLonginLastTime +
+			", userStatus=" + userStatus +
+			", createTime=" + createTime +
+			", updateTime=" + updateTime +
+			", userVersion=" + userVersion +
+			"}";
+	}
 }

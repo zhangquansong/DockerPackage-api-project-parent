@@ -6,12 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.clt.api.param.${entity}Param;
+import com.clt.api.param.${entity}CreateParam;
+import com.clt.api.param.${entity}EditParam;
 import com.clt.api.utils.RestResult;
 import java.util.List;
 import ${package.Entity}.${entity};
 import org.springframework.beans.BeanUtils;
+import javax.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import org.apache.ibatis.annotations.Param;
 
 /**
  *
@@ -28,14 +31,14 @@ public class ${table.controllerName}  {
     /**
      * 新增
      *
-     * @param ${table.entityPath}Param
+     * @param ${table.entityPath}CreateParam
      */
     @PostMapping("/create")
     @ResponseBody
-    public RestResult create(@RequestBody ${entity}Param ${table.entityPath}Param) {
-        ${entity} ${table.entityPath}=new ${entity}();
-        BeanUtils.copyProperties(${table.entityPath}Param, ${entity}.class);
-        ${table.entityPath}Service.create(${table.entityPath});
+    public RestResult create(@Valid @RequestBody ${entity}CreateParam ${table.entityPath}CreateParam) {
+${entity} ${table.entityPath}=new ${entity}();
+        BeanUtils.copyProperties(${table.entityPath}CreateParam, ${table.entityPath});
+${table.entityPath}Service.create(${table.entityPath});
         return RestResult.successResponse();
     }
 
@@ -47,21 +50,21 @@ public class ${table.controllerName}  {
     @PostMapping("/delete")
     @ResponseBody
     public RestResult delete(Integer id) {
-        ${table.entityPath}Service.delete(id);
+${table.entityPath}Service.delete(id);
         return RestResult.successResponse();
     }
 
     /**
      * 修改
      *
-     * @param ${table.entityPath}Param
+     * @param ${table.entityPath}EditParam
      */
     @PostMapping("/edit")
     @ResponseBody
-    public RestResult edit(@RequestBody ${entity}Param ${table.entityPath}Param) {
-        ${entity} ${table.entityPath}=new ${entity}();
-        BeanUtils.copyProperties(${table.entityPath}Param, ${entity}.class);
-        ${table.entityPath}Service.edit(${table.entityPath});
+    public RestResult edit(@Valid @RequestBody ${entity}EditParam ${table.entityPath}EditParam) {
+${entity} ${table.entityPath}=new ${entity}();
+        BeanUtils.copyProperties(${table.entityPath}EditParam, ${table.entityPath});
+${table.entityPath}Service.edit(${table.entityPath});
         return RestResult.successResponse();
     }
 
@@ -72,7 +75,8 @@ public class ${table.controllerName}  {
      */
     @PostMapping("/listAll")
     @ResponseBody
-    public RestResult<List<${entity}>> listAll() {
+    public RestResult
+<List<${entity}>> listAll() {
        return RestResult.successResponse(${table.entityPath}Service.listAll());
     }
 
@@ -84,7 +88,7 @@ public class ${table.controllerName}  {
     */
     @PostMapping("/findById")
     @ResponseBody
-    public RestResult<${entity}> findById(Integer id) {
+    public RestResult<${entity}> findById(@Param("id") Integer id) {
         return RestResult.successResponse(${table.entityPath}Service.findById(id));
     }
 

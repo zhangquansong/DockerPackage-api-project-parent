@@ -2,6 +2,8 @@ package com.clt.api.interceptor;
 
 
 import com.clt.api.annotation.Login;
+import com.clt.api.exception.AuthenticationFailureException;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -30,6 +32,12 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         }
         if (annotation == null) {
             return true;
+        }
+        //从header中获取token
+        String token = request.getHeader("token");
+        //token为空
+        if (StringUtils.isBlank(token)) {
+            throw new AuthenticationFailureException("token不能为空");
         }
         return true;
     }

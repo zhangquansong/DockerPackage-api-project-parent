@@ -2,7 +2,6 @@ package ${package.Service};
 
 import ${package.Entity}.${entity};
 import ${superServiceClassPackage};
-import com.clt.api.param.${entity}Param;
 
 import java.util.List;
 

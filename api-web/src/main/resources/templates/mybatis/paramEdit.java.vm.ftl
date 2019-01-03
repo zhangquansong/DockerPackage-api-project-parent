@@ -8,7 +8,7 @@ import lombok.Data;
  * @since ${date}
  */
 @Data
-public class ${entity}Param implements Serializable {
+public class ${entity}EditParam implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

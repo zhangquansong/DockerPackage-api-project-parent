@@ -66,7 +66,7 @@ public class CodeGenerator {
             pc.setMapper("mapper");
         } else if ("api-service".equals(model)) {
             pc.setParent("com.clt.api");
-            pc.setServiceImpl("impl");
+            pc.setServiceImpl("service.impl");
             pc.setService("service");
         } else if ("api-web".equals(model)) {
             pc.setParent("com.clt.api");
@@ -97,12 +97,36 @@ public class CodeGenerator {
             });
         }
 
-        if ("api-commons".equals(model)) {
-            focList.add(new FileOutConfig("templates/mybatis/param.java.vm.ftl") {
+        /*if ("api-service".equals(model)) {
+            focList.add(new FileOutConfig("/templates/mybatis/service.java.vm.ftl") {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输入文件名称
-                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + "Param.java";
+                    return rb.getString("OutputDirService") + "/" + tableInfo.getEntityName() + "Service.java";
+                }
+            });
+            focList.add(new FileOutConfig("/templates/mybatis/serviceImpl.java.vm.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    return rb.getString("OutputDirServiceImpl") + "/" + tableInfo.getEntityName() + "ServiceImpl.java";
+                }
+            });
+        }*/
+
+        if ("api-commons".equals(model)) {
+            focList.add(new FileOutConfig("templates/mybatis/paramCreate.java.vm.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + "CreateParam.java";
+                }
+            });
+            focList.add(new FileOutConfig("templates/mybatis/paramEdit.java.vm.ftl") {
+                @Override
+                public String outputFile(TableInfo tableInfo) {
+                    // 自定义输入文件名称
+                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + "EditParam.java";
                 }
             });
         }

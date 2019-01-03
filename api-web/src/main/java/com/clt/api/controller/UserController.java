@@ -3,20 +3,93 @@ package com.clt.api.controller;
 import com.clt.api.annotation.Login;
 import com.clt.api.annotation.LoginUser;
 import com.clt.api.entity.User;
+import com.clt.api.param.UserCreateParam;
+import com.clt.api.param.UserEditParam;
 import com.clt.api.service.UserService;
 import com.clt.api.utils.PageInfo;
+import com.clt.api.utils.RestResult;
 import com.github.pagehelper.Page;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.List;
+
+/**
+ * @author zhangquansong
+ * @since 2019-01-03
+ */
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     private UserService userService;
+
+    /**
+     * 新增
+     *
+     * @param userCreateParam
+     */
+    @PostMapping("/create")
+    @ResponseBody
+    public RestResult create(@Valid @RequestBody UserCreateParam userCreateParam) {
+        User user = new User();
+        BeanUtils.copyProperties(userCreateParam, user);
+        userService.create(user);
+        return RestResult.successResponse();
+    }
+
+    /**
+     * 删除
+     *
+     * @param id 主键id
+     */
+    @PostMapping("/delete")
+    @ResponseBody
+    public RestResult delete(Integer id) {
+        userService.delete(id);
+        return RestResult.successResponse();
+    }
+
+    /**
+     * 修改
+     *
+     * @param userEditParam
+     */
+    @PostMapping("/edit")
+    @ResponseBody
+    public RestResult edit(@Valid @RequestBody UserEditParam userEditParam) {
+        User user = new User();
+        BeanUtils.copyProperties(userEditParam, user);
+        userService.edit(user);
+        return RestResult.successResponse();
+    }
+
+    /**
+     * 查询列表
+     *
+     * @return
+     */
+    @PostMapping("/listAll")
+    @ResponseBody
+    public RestResult<List<User>> listAll() {
+        return RestResult.successResponse(userService.listAll());
+    }
+
+    /**
+     * 查询详情
+     *
+     * @param id 主键id
+     * @return
+     */
+    @PostMapping("/findById")
+    @ResponseBody
+    public RestResult<User> findById(@Param("id") Integer id) {
+        return RestResult.successResponse(userService.findById(id));
+    }
 
     @GetMapping("/simple/listPage")
     public String list() {
@@ -24,7 +97,7 @@ public class UserController {
         return "123";
     }
 
-    @GetMapping("/user/listPage")
+    @GetMapping("/listPage")
     @ResponseBody
     public PageInfo<User> listPage() {
         Page<User> users = userService.findByPage(1, 20);
@@ -33,10 +106,10 @@ public class UserController {
         return pageInfo;
     }
 
-    @PostMapping("/user/getUser")
+    @PostMapping("/getUser")
     @Login
     public User getUser(@LoginUser User user) {
         return user;
     }
-}
 
+}
