@@ -39,10 +39,10 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if (handler instanceof HandlerMethod) {
             annotation = ((HandlerMethod) handler).getMethodAnnotation(Login.class);
         } else {
-            return true;
+            return Boolean.TRUE;
         }
         if (!CheckUtils.isNotEmpty(annotation)) {
-            return true;
+            return Boolean.TRUE;
         }
         String token = request.getHeader(Constants.KEY_NAME_TOKEN);//从header中获取token
         if (StringUtils.isBlank(token)) {
@@ -67,7 +67,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             //用户不存在
             throw new MyException(RestConstants.BIZ_USER_NULL_10005.getCode(), RestConstants.BIZ_USER_NULL_10005.getMessage());
         }
-        return true;
+        return Boolean.TRUE;
     }
 
     @Override

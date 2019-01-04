@@ -1,15 +1,18 @@
 package com.clt.api;
 
+import com.clt.api.filter.HttpServletRequestReplacedFilter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,5 +46,21 @@ public class ApiWebApplication extends SpringBootServletInitializer {
     @RequestMapping("/hi")
     public String home(@RequestParam String name) {
         return "hi " + name + ",i am from port:" + port;
+    }
+
+    /**
+     * 获取requestBody解决java.io.IOException: Stream closed
+     *
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean httpServletRequestReplacedRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new HttpServletRequestReplacedFilter());
+        registration.addUrlPatterns("/*");
+        registration.addInitParameter("paramName", "paramValue");
+        registration.setName("httpServletRequestReplacedFilter");
+        registration.setOrder(1);
+        return registration;
     }
 }

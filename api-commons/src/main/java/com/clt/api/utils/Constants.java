@@ -10,7 +10,6 @@ public class Constants {
      */
     public static final String REDIS_API_PREFIX = "@@CLTUser";
     public static final String KEY_NAME_TOKEN = "token";
-    public static final String KEY_NAME_SIGN = "sign";
 
     /**
      * 常用的0,1值

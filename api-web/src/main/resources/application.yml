@@ -85,6 +85,13 @@ logging:
   level:
      com.clt.api.dao: debug
 
+clt:
+  signa:
+      appkey: 6643150578D49C0BFAB2A53DBC52B801                       #签名key
+      appsecret: D580AB0E7BEAEAB465463444BC1A9533                    #签名appsecret
+      timeExpire: 1                                                  #请求有效时长
+
+
 
 
 

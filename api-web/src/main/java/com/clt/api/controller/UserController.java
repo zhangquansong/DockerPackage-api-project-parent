@@ -36,6 +36,7 @@ public class UserController {
      */
     @PostMapping("/create")
     @ResponseBody
+    @Sign
     public RestResult create(@Valid @RequestBody UserCreateParam userCreateParam) {
         User user = new User();
         BeanUtils.copyProperties(userCreateParam, user);

@@ -15,7 +15,10 @@ public enum RestConstants {
      */
     BIZ_USER_LOGIN_10001(10001, "用户名或者密码错误"), BIZ_TOKEN_NULL_10002(10002, "token为空"),
     BIZ_TOKEN_EFFECT_10003(10003, "token失效"), BIZ_TOKEN_EXCEPTION_10004(10004, "token异常"),
-    BIZ_USER_NULL_10005(10005, "用户不存在"), BIZ_SIGN_NULL_10006(10006, "sign为空");
+    BIZ_USER_NULL_10005(10005, "用户不存在"), BIZ_SIGN_NULL_10006(10006, "sign为空"),
+    BIZ_TIMESTAMP_NULL_10007(10007, "timeStamp为空"), REQUEST_INVALID_CORE_10008(10008, "签名检查异常:非法请求"),
+    REQUEST_EXPIRED_CODE_10009(10009, "签名检查异常:请求已过期,请检查系统时间"), REQUEST_SIGN_ERROR_CODE_10010(10010, "签名检查异常:签名错误"),
+    REQUEST_PARAM_ERROR_CODE_10011(10011, "签名检查异常:参数错误");
 
     private final Integer code;//状态吗
     private final String message;//信息
