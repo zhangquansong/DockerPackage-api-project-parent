@@ -1,6 +1,7 @@
 package com.clt.api.config;
 
 import com.clt.api.interceptor.AuthorizationInterceptor;
+import com.clt.api.interceptor.SignInterceptor;
 import com.clt.api.resolver.LoginUserHandlerMethodArgumentResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Autowired
     private AuthorizationInterceptor authorizationInterceptor;
+
+    @Autowired
+    private SignInterceptor signInterceptor;
 
     @Autowired
     private Environment env;
@@ -64,6 +68,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         // addPathPatterns 用于添加拦截规则, 这里假设拦截 /url 后面的全部链接
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(signInterceptor).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
 

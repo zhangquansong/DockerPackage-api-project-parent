@@ -2,6 +2,7 @@ package com.clt.api.controller;
 
 import com.clt.api.annotation.Login;
 import com.clt.api.annotation.LoginUser;
+import com.clt.api.annotation.Sign;
 import com.clt.api.entity.User;
 import com.clt.api.param.UserCreateParam;
 import com.clt.api.param.UserEditParam;
@@ -106,8 +107,9 @@ public class UserController {
         return pageInfo;
     }
 
-    @PostMapping("/getUser")
     @Login
+    @Sign
+    @PostMapping("/getUser")
     public User getUser(@LoginUser User user) {
         return user;
     }
