@@ -38,7 +38,7 @@ public class LoginController {
      **/
     @PostMapping("/login")
     @ResponseBody
-    @SameUrlData
+//    @SameUrlData
     public RestResult<UserLoginVO> login(@RequestBody @Valid UserLoginParam userLoginParam) {
         return userExtendService.userLogin(userLoginParam.getUserLoginName(), userLoginParam.getUserPassword());
     }

@@ -65,12 +65,12 @@ public class SignInterceptor extends HandlerInterceptorAdapter {
             throw new MyException(RestConstants.BIZ_SIGN_NULL_10006.getCode(), RestConstants.BIZ_SIGN_NULL_10006.getMessage());
         }
         String timeStamp = request.getHeader(TIMESTAMP_KEY);
-        if (StringUtils.isBlank(timeStamp)) {
-            throw new MyException(RestConstants.BIZ_TIMESTAMP_NULL_10007.getCode(), RestConstants.BIZ_TIMESTAMP_NULL_10007.getMessage());
-        }
         if (this.isExpire(timeStamp)) {// 请求已过期
             log.info(RestConstants.REQUEST_EXPIRED_CODE_10009.getMessage());
             throw new MyException(RestConstants.REQUEST_EXPIRED_CODE_10009.getCode(), RestConstants.REQUEST_EXPIRED_CODE_10009.getMessage());
+        }
+        if (StringUtils.isBlank(timeStamp)) {
+            throw new MyException(RestConstants.BIZ_TIMESTAMP_NULL_10007.getCode(), RestConstants.BIZ_TIMESTAMP_NULL_10007.getMessage());
         }
         if (!this.checkSign(new BodyReaderRequestWrapper(request), sign, timeStamp)) { // 请求已失效
             log.info(RestConstants.REQUEST_INVALID_CORE_10008.getMessage());

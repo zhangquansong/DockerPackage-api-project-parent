@@ -6,10 +6,7 @@ import com.clt.api.entity.User;
 import com.clt.api.exception.MyException;
 import com.clt.api.result.UserLoginVO;
 import com.clt.api.service.UserService;
-import com.clt.api.utils.CheckUtils;
-import com.clt.api.utils.Constants;
-import com.clt.api.utils.RedisUtils;
-import com.clt.api.utils.RestConstants;
+import com.clt.api.utils.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,7 +43,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if (!CheckUtils.isNotEmpty(annotation)) {
             return Boolean.TRUE;
         }
-        String token = request.getHeader(Constants.KEY_NAME_TOKEN);//从header中获取token
+        String token = RequestHeaderContext.getInstance().token;//从header中获取token
         if (StringUtils.isBlank(token)) {
             //token为空
             throw new MyException(RestConstants.BIZ_TOKEN_NULL_10002.getCode(), RestConstants.BIZ_TOKEN_NULL_10002.getMessage());
