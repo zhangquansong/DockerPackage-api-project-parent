@@ -21,8 +21,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import java.util.Map;
 
 /**
- * 有@LoginUser注解的方法参数，注入当前登录用户
- */
+ * @ClassName : LoginUserHandlerMethodArgumentResolver
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:30
+ * @Description :有@LoginUser注解的方法参数，注入当前登录用户
+ **/
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
 

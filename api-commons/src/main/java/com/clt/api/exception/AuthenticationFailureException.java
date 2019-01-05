@@ -1,8 +1,14 @@
 package com.clt.api.exception;
 
-/***
- * 登录失效异常:401
- */
+import lombok.Data;
+
+/**
+ * @ClassName : AuthenticationFailureException
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:09
+ * @Description :登录失效异常:401
+ **/
+@Data
 public class AuthenticationFailureException extends RuntimeException {
 
     private static final long serialVersionUID = 4745836273751186869L;
@@ -17,22 +23,6 @@ public class AuthenticationFailureException extends RuntimeException {
     public AuthenticationFailureException(String msg, Throwable e) {
         super(msg, e);
         this.msg = msg;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
     }
 
 }

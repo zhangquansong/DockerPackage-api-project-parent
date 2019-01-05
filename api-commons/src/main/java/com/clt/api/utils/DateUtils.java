@@ -5,6 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+/**
+ * @ClassName : DateUtils
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:18
+ * @Description : 时间工具类
+ **/
 public class DateUtils {
     public static String DATE_FORMAT = "yyyy-MM-dd";
 

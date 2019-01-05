@@ -22,9 +22,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 /**
- *
- * 权限(Token)验证(处理通用的Http Header)
- */
+ * @ClassName : AuthorizationInterceptor
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:29
+ * @Description :权限(Token)验证(处理通用的Http Header)
+ **/
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 

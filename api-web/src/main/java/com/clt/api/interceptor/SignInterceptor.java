@@ -29,8 +29,11 @@ import static com.google.common.collect.Lists.newArrayList;
 import static com.google.common.collect.Maps.newHashMap;
 
 /**
- * 签名
- */
+ * @ClassName : SignInterceptor
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:30
+ * @Description :签名
+ **/
 @Slf4j
 @Component
 public class SignInterceptor extends HandlerInterceptorAdapter {

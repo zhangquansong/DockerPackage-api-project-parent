@@ -6,13 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @ClassName : LoginUser
+ * @ClassName : SameUrlData
  * @Author : zhangquansong
  * @Date : 2019/1/5 0005 下午 3:08
- * @Description :登录用户信息
+ * @Description :一个用户 相同url 同时提交 相同数据 验证
  **/
-@Target(ElementType.PARAMETER)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface LoginUser {
+public @interface SameUrlData {
 
 }
+  
+      

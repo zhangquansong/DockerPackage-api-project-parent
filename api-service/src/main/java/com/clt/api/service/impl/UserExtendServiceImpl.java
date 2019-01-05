@@ -13,18 +13,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * 用户操作
- */
+ * @ClassName : UserExtendServiceImpl
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:21
+ * @Description :用户复杂业务操作Service实现类
+ **/
 @Service
 @Transactional
 public class UserExtendServiceImpl extends ServiceImpl<UserMapper, User> implements UserExtendService {
-
 
     @Autowired
     private UserService userService;
     @Autowired
     private RedisExtendUtils redisExtendUtils;
 
+    /**
+     * @param loginName 登录名
+     * @param password  密码
+     * @return com.clt.api.utils.RestResult<com.clt.api.result.UserLoginVO>
+     * @Author zhangquansong
+     * @Date 2019/1/5 0005 下午 3:23
+     * @Description : 根据登录名和密码查询可用用户，生成redis->token实现登录功能
+     **/
     @Override
     public RestResult<UserLoginVO> userLogin(String loginName, String password) {
         User user = userService.findUserByLoginNameAndPassword(loginName, password);//查询用户信息

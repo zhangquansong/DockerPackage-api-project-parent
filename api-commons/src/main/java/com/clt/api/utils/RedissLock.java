@@ -7,8 +7,11 @@ import org.redisson.api.RedissonClient;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Lock接口实现类
- */
+  *@ClassName : RedissLock
+  *@Author : zhangquansong
+  *@Date : 2019/1/5 0005 下午 3:17
+  *@Description :Lock接口实现类
+  **/
 @Setter
 public class RedissLock {
 

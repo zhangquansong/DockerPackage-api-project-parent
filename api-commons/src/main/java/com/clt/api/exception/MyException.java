@@ -1,10 +1,11 @@
 package com.clt.api.exception;
 
 /**
- * 自定义异常
- *
- * @date 2016年10月27日 下午10:11:27
- */
+ * @ClassName : MyException
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:12
+ * @Description :自定义异常
+ **/
 public class MyException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 

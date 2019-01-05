@@ -19,9 +19,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * @author zhangquansong
- * @since 2019-01-03
- */
+ * @ClassName : UserController
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:28
+ * @Description :用户控制层
+ **/
 @RestController
 @RequestMapping("/user")
 public class UserController {

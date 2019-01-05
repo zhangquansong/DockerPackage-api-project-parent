@@ -13,8 +13,11 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 /**
- * 解决Request中流只能读一次，springMVC无法读取
- */
+ * @ClassName : BodyReaderRequestWrapper
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:28
+ * @Description :解决Request中流只能读一次，springMVC无法读取
+ **/
 public class BodyReaderRequestWrapper extends HttpServletRequestWrapper {
 
     private final byte[] body;

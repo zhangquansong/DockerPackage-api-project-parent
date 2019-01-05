@@ -19,10 +19,11 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
- * 异常处理器
- *
- * @date 2016年10月27日 下午10:16:19
- */
+ * @ClassName : MyExceptionHandler
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:12
+ * @Description :异常处理器
+ **/
 @Slf4j
 @RestControllerAdvice
 public class MyExceptionHandler {

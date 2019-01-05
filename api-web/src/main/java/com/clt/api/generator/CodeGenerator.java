@@ -12,7 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-
+/**
+ * @ClassName : CodeGenerator
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:28
+ * @Description :代码生成器
+ **/
 public class CodeGenerator {
 
     public static void main(String[] args) {
@@ -25,7 +30,6 @@ public class CodeGenerator {
     private static void shell(String model) {
         File file = new File(model);
         String path = file.getAbsolutePath();
-        //path = path.substring(0, path.lastIndexOf(File.separator));
 
         //用来获取Mybatis-Plus.properties文件的配置信息
         final ResourceBundle rb = ResourceBundle.getBundle("mybatis-plus");
@@ -47,7 +51,6 @@ public class CodeGenerator {
         gc.setServiceImplName("%sServiceImpl");
         gc.setControllerName("%sController");
         mpg.setGlobalConfig(gc);
-
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
@@ -96,23 +99,6 @@ public class CodeGenerator {
                 }
             });
         }
-
-        /*if ("api-service".equals(model)) {
-            focList.add(new FileOutConfig("/templates/mybatis/service.java.vm.ftl") {
-                @Override
-                public String outputFile(TableInfo tableInfo) {
-                    // 自定义输入文件名称
-                    return rb.getString("OutputDirService") + "/" + tableInfo.getEntityName() + "Service.java";
-                }
-            });
-            focList.add(new FileOutConfig("/templates/mybatis/serviceImpl.java.vm.ftl") {
-                @Override
-                public String outputFile(TableInfo tableInfo) {
-                    // 自定义输入文件名称
-                    return rb.getString("OutputDirServiceImpl") + "/" + tableInfo.getEntityName() + "ServiceImpl.java";
-                }
-            });
-        }*/
 
         if ("api-commons".equals(model)) {
             focList.add(new FileOutConfig("templates/mybatis/paramCreate.java.vm.ftl") {
@@ -165,16 +151,12 @@ public class CodeGenerator {
         }
         mpg.setTemplate(tc);
 
-//      mpg.setTemplate(new TemplateConfig().setXml(null));
-
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
-//        strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
         strategy.setInclude(new String[]{rb.getString("tableName")});
         mpg.setStrategy(strategy);
-//        mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();
 
     }

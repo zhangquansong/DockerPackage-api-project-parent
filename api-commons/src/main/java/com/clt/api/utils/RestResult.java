@@ -3,10 +3,11 @@ package com.clt.api.utils;
 import java.io.Serializable;
 
 /**
- * 接口返回包装类
- *
- * @param <T>
- */
+ * @ClassName : RestResult
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:17
+ * @Description :接口返回包装类
+ **/
 public class RestResult<T> implements Serializable {
 
     private Integer code;//状态码

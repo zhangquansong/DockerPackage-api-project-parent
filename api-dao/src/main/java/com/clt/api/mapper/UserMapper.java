@@ -6,11 +6,13 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Select;
 
 /**
- * @author zhangquansong
- * @since 2019-01-03
- */
+ * @ClassName : UserMapper
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:20
+ * @Description :用户mapper
+ **/
 public interface UserMapper extends SuperMapper<User> {
 
     @Select("select * from user")
-    Page<User> findByPage();
+    Page<User> findByPage();//查询分页信息例子
 }

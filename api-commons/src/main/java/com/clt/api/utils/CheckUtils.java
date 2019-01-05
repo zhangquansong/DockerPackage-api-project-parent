@@ -8,6 +8,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @ClassName : CheckUtils
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:17
+ * @Description : 检查工具类
+ **/
 public class CheckUtils {
 
     public static final String COMMON_FIELD = "flowID,initiator,";

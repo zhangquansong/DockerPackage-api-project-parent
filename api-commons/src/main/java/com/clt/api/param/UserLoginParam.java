@@ -1,16 +1,19 @@
 package com.clt.api.param;
 
+import com.clt.api.param.base.BaseParam;
 import lombok.Data;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.io.Serializable;
 
 /**
- * @author zhangquansong
- * @since 2019-01-03
- */
+ * @ClassName : UserLoginParam
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:14
+ * @Description :用户登录param
+ **/
 @Data
-public class UserLoginParam implements Serializable {
+public class UserLoginParam extends BaseParam implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

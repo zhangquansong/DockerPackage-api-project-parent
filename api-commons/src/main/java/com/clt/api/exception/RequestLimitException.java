@@ -1,10 +1,11 @@
 package com.clt.api.exception;
 
 /**
- * HTTP请求超出设定的限制异常
- * @date 2018年5月12日 下午2:55:19
- * @author wangj@boruijinfu.com
- */
+ * @ClassName : RequestLimitException
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:13
+ * @Description :HTTP请求超出设定的限制异常
+ **/
 public class RequestLimitException extends MyException {
     private static final long serialVersionUID = 1364225358754654702L;
 
@@ -16,7 +17,7 @@ public class RequestLimitException extends MyException {
         super(message);
     }
 
-    public RequestLimitException(String message, Throwable cause){
+    public RequestLimitException(String message, Throwable cause) {
         super(message, cause);
     }
 }

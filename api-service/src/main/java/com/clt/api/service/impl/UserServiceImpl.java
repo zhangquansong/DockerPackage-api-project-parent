@@ -16,9 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * @author zhangquansong
- * @since 2019-01-03
- */
+ * @ClassName : UserServiceImpl
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:24
+ * @Description :用户基本CURD操作实现类
+ **/
 @Service
 @Transactional
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {

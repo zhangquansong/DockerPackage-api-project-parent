@@ -7,15 +7,11 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * 对Page<E>结果进行包装
- * <p/>
- * 新增分页的多项属性，主要参考:http://bbs.csdn.net/topics/360010907
- *
- * @author zqs
- * @version 3.3.0
- * @since 3.2.2
- * 项目地址 : http://git.oschina.net/free/Mybatis_PageHelper
- */
+ * @ClassName : PageInfo
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:16
+ * @Description :对Page<E>结果进行包装
+ **/
 @SuppressWarnings({"rawtypes", "unchecked"})
 public class PageInfo<T> implements Serializable {
     private static final long serialVersionUID = 1L;

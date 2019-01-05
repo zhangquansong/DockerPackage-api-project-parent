@@ -4,6 +4,12 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * @ClassName : MD5Util
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:18
+ * @Description : MD5工具类
+ **/
 public class MD5Util {
 
     private static final String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};

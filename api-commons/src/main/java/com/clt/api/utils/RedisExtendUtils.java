@@ -12,8 +12,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- *
- */
+ * @ClassName : RedisExtendUtils
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:18
+ * @Description : redis业务工具类
+ **/
 @Component
 public class RedisExtendUtils {
 

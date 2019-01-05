@@ -11,6 +11,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * @ClassName : HttpHelper
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:18
+ * @Description :HttpHelper
+ **/
 public class HttpHelper {
 
     /**

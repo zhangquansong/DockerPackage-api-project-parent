@@ -4,6 +4,12 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+/**
+ * @ClassName : HttpServletRequestReplacedFilter
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:28
+ * @Description :HttpServletRequestReplacedFilter
+ **/
 public class HttpServletRequestReplacedFilter implements Filter {
     @Override
     public void destroy() {

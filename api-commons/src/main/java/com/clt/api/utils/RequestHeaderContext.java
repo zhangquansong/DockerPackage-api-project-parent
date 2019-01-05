@@ -1,11 +1,11 @@
 package com.clt.api.utils;
 
 /**
- * 声明 上下文获取app头部Header参数
- * 
- * @date 2018年4月26日 下午7:25:40
- * @author wangj@boruijinfu.com
- */
+ * @ClassName : RequestHeaderContext
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:17
+ * @Description :声明 上下文获取app头部Header参数
+ **/
 public class RequestHeaderContext {
 
     private static final ThreadLocal<RequestHeaderContext> REQUEST_HEADER_CONTEXT_THREAD_LOCAL = new ThreadLocal<>();
@@ -37,7 +37,7 @@ public class RequestHeaderContext {
     public String deviceTokenSigna; // 设备标识签名：deviceTokenSigna与旧版app保持一致
 
     public String deviceType;// 移动设备类型：deviceType 1.安卓 2.IOS 3,PC 4,wap
-    
+
     public String formToken;// 表单唯一标识
 
     public static RequestHeaderContext getInstance() {
@@ -88,6 +88,7 @@ public class RequestHeaderContext {
         private String deviceTokenSigna; // 设备标识签名：deviceTokenSigna与旧版app保持一致
         private String deviceType;// 移动设备类型：deviceType 1.安卓 2.IOS
         public String formToken;// 表单唯一标识
+
         public RequestHeaderContextBuild appPackageName(String appPackageName) {
             this.appPackageName = appPackageName;
             return this;

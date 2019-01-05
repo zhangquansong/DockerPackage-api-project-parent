@@ -7,9 +7,11 @@ import com.github.pagehelper.Page;
 import java.util.List;
 
 /**
- * @author zhangquansong
- * @since 2019-01-03
- */
+ * @ClassName : UserService
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:25
+ * @Description :用户基本操作CURD接口
+ **/
 public interface UserService extends IService<User> {
 
     /**

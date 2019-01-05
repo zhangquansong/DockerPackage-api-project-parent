@@ -16,8 +16,11 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import java.io.IOException;
 
 /**
- * Redis配置
- */
+ * @ClassName : RedisConfig
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:26
+ * @Description :Redis配置
+ **/
 @Configuration
 public class RedisConfig {
 
@@ -73,10 +76,12 @@ public class RedisConfig {
     }
 
     /**
-     * 装配locker类，并将实例注入到RedissLockUtil中
-     *
-     * @return
-     */
+     * @param redissonClient
+     * @return com.clt.api.utils.RedissLock
+     * @Author zhangquansong
+     * @Date 2019/1/5 0005 下午 3:26
+     * @Description :装配locker类，并将实例注入到RedissLockUtil中
+     **/
     @Bean
     public RedissLock distributedLocker(RedissonClient redissonClient) {
         RedissLock locker = new RedissLock();

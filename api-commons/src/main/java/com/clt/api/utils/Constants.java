@@ -1,8 +1,11 @@
 package com.clt.api.utils;
 
 /**
- * 系统常量类
- */
+ * @ClassName : Constants
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:16
+ * @Description :系统常量类
+ **/
 public class Constants {
 
     /**
@@ -29,5 +32,10 @@ public class Constants {
      */
     public static final Integer USER_STATUS_0 = 0;
     public static final Integer USER_STATUS_1 = 1;
+
+    /**
+     * repeatData 重复提交，AttributeName
+     */
+    public static final String REPEATDATA = "repeatData";
 
 }

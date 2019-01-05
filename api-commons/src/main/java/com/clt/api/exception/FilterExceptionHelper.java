@@ -7,15 +7,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Filter异常处理
- * @date 2018年6月5日 下午9:01:14
- * @author wangj@boruijinfu.com
- */
+ * @ClassName : FilterExceptionHelper
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:11
+ * @Description :Filter异常处理
+ **/
 public class FilterExceptionHelper {
 
     /**
      * 处理BizException错误
-     * 
+     *
      * @param bz
      * @param request
      * @param response
@@ -28,7 +29,7 @@ public class FilterExceptionHelper {
 
     /**
      * 处理BizException错误
-     * 
+     *
      * @param bz
      * @param request
      * @param response

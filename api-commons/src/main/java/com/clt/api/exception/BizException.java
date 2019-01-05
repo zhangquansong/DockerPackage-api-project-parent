@@ -1,14 +1,16 @@
 package com.clt.api.exception;
 
+import lombok.Data;
+
 /**
- * 业务异常
- * 
- * @author Administrator
- *
- */
+ * @ClassName : BizException
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:10
+ * @Description :业务异常
+ **/
+@Data
 public class BizException extends RuntimeException {
 
-    /**  */
     private static final long serialVersionUID = -298311232780808293L;
 
     private int code = 400;
@@ -26,22 +28,6 @@ public class BizException extends RuntimeException {
 
     public BizException(int code) {
         this.code = code;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
 }

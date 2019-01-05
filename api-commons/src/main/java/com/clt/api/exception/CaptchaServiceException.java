@@ -1,5 +1,11 @@
 package com.clt.api.exception;
 
+/**
+  *@ClassName : CaptchaServiceException
+  *@Author : zhangquansong
+  *@Date : 2019/1/5 0005 下午 3:11
+  *@Description :
+  **/
 public class CaptchaServiceException extends RuntimeException {
     
     private static final long serialVersionUID = 2864817652714842988L;

@@ -6,8 +6,11 @@ import com.clt.api.result.UserLoginVO;
 import com.clt.api.utils.RestResult;
 
 /**
- * 用户操作
- */
+ * @ClassName : UserExtendService
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:25
+ * @Description :用户复杂业务操作接口
+ **/
 public interface UserExtendService extends IService<User> {
 
     /**

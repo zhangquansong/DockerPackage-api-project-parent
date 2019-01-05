@@ -1,25 +1,34 @@
 package com.clt.api.config;
 
+import com.alibaba.fastjson.serializer.SerializeConfig;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.clt.api.interceptor.AuthorizationInterceptor;
+import com.clt.api.interceptor.SameUrlDataInterceptor;
 import com.clt.api.interceptor.SignInterceptor;
 import com.clt.api.resolver.LoginUserHandlerMethodArgumentResolver;
+import com.clt.api.security.SensitivePropertyFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MVC配置 WebMvcConfigurationSupport 与 WebMvcConfigurerAdapter
+ * @ClassName : WebMvcConfig
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:27
+ * @Description : MVC配置 WebMvcConfigurationSupport 与 WebMvcConfigurerAdapter
  * 都可以配置MVC,WebMvcConfigurationSupport 支持的自定义的配置更多更全
- *
- * @author wangj@boruijinfu.com
- * @date 2018年4月23日 上午10:51:32
- */
+ **/
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
@@ -31,6 +40,9 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Autowired
     private SignInterceptor signInterceptor;
+
+    @Autowired
+    private SameUrlDataInterceptor sameUrlDataInterceptor;
 
     @Autowired
     private Environment env;
@@ -69,6 +81,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         // excludePathPatterns 用户排除拦截
         registry.addInterceptor(authorizationInterceptor).addPathPatterns("/**");
         registry.addInterceptor(signInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(sameUrlDataInterceptor).addPathPatterns("/**");
         super.addInterceptors(registry);
     }
 
@@ -116,4 +129,55 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
         };
     }
 
+
+    /**
+     * FastJson转换器（处理IOS数值类型Double精度.9999999999999999的问题）
+     *
+     * @param converters
+     */
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.configureMessageConverters(converters);
+        // 1.需要先定义一个 convert 转换消息的对象;
+        FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+        List<MediaType> supportedMediaTypes = new ArrayList<>();
+        supportedMediaTypes.add(MediaType.APPLICATION_JSON);
+        supportedMediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        supportedMediaTypes.add(MediaType.APPLICATION_ATOM_XML);
+        supportedMediaTypes.add(MediaType.APPLICATION_FORM_URLENCODED);
+        supportedMediaTypes.add(MediaType.APPLICATION_OCTET_STREAM);
+        supportedMediaTypes.add(MediaType.APPLICATION_PDF);
+        supportedMediaTypes.add(MediaType.APPLICATION_RSS_XML);
+        supportedMediaTypes.add(MediaType.APPLICATION_XHTML_XML);
+        supportedMediaTypes.add(MediaType.APPLICATION_XML);
+        supportedMediaTypes.add(MediaType.IMAGE_GIF);
+        supportedMediaTypes.add(MediaType.IMAGE_JPEG);
+        supportedMediaTypes.add(MediaType.IMAGE_PNG);
+        supportedMediaTypes.add(MediaType.TEXT_EVENT_STREAM);
+        supportedMediaTypes.add(MediaType.TEXT_HTML);
+        supportedMediaTypes.add(MediaType.TEXT_MARKDOWN);
+        supportedMediaTypes.add(MediaType.TEXT_PLAIN);
+        supportedMediaTypes.add(MediaType.TEXT_XML);
+        fastConverter.setSupportedMediaTypes(supportedMediaTypes);
+        // 处理IOS数值类型Double精度.9999999999999999的问题
+        SerializeConfig config = SerializeConfig.getGlobalInstance();
+        //config.put(Double.class, new DoubleValueSerializer());
+        // 2、添加fastJson 的配置信息，比如：是否要格式化返回的json数据;
+        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+        fastJsonConfig.setSerializeFilters(new SensitivePropertyFilter());// SensitivePropertyFilter增加字段脱敏
+        fastJsonConfig.setSerializeConfig(config);
+        // BrowserCompatible 将中文都会序列化为uXXXX格式，字节数会多一些，但是能兼容IE 6，默认为false
+        // QuoteFieldNames———-输出key时是否使用双引号,默认为true
+        // WriteMapNullValue——–是否输出值为null的字段,默认为false
+        // WriteNullNumberAsZero—-数值字段如果为null,输出为0,而非null
+        // WriteNullListAsEmpty—–List字段如果为null,输出为[],而非null
+        // WriteNullStringAsEmpty—字符类型字段如果为null,输出为”“,而非null
+        // WriteNullBooleanAsFalse–Boolean字段如果为null,输出为false,而非null
+        // DisableCircularReferenceDetect 对象转化成json避免$ref：
+        fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteNullNumberAsZero, SerializerFeature.PrettyFormat, SerializerFeature.WriteNullListAsEmpty, SerializerFeature.WriteEnumUsingToString, SerializerFeature.DisableCircularReferenceDetect);
+        // 3、在convert中添加配置信息.
+        fastConverter.setFastJsonConfig(fastJsonConfig);
+        // 4、将convert添加到converters当中.
+        converters.add(fastConverter);
+    }
 }

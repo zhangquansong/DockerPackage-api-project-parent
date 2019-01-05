@@ -15,9 +15,12 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
- * REDIS 工具类 基于spring和redis的redisTemplate工具类 针对所有的hash 都是以h开头的方法 针对所有的Set
+ * @ClassName : RedisUtils
+ * @Author : zhangquansong
+ * @Date : 2019/1/5 0005 下午 3:17
+ * @Description :REDIS 工具类 基于spring和redis的redisTemplate工具类 针对所有的hash 都是以h开头的方法 针对所有的Set
  * 都是以s开头的方法 不含通用方法 针对所有的List 都是以l开头的方法
- */
+ **/
 @Component
 public class RedisUtils {
 
