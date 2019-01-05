@@ -28,7 +28,7 @@ public class Constants {
     public static final Integer IS_DELETE_1 = 1;
 
     /**
-     * 用户状态 0:启用、1:禁用
+     * 用户状态 0:启用、1:黑名单
      */
     public static final Integer USER_STATUS_0 = 0;
     public static final Integer USER_STATUS_1 = 1;

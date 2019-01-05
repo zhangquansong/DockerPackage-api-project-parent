@@ -1,7 +1,9 @@
 package com.clt.api.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.clt.api.result.UserLoginVO;
+import com.clt.api.entity.BlackUser;
+import com.clt.api.entity.User;
+import com.clt.api.service.BlackUserExtendService;
 import com.clt.api.utils.*;
 import com.google.common.base.Strings;
 import org.apache.commons.lang.StringUtils;
@@ -31,6 +33,9 @@ public class RequestLimitFilter implements Filter {
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
+    @Autowired
+    private BlackUserExtendService blackUserExtendService;
+
     @Value("${clt.glob.limitTime}")
     private long globLimitTime;
 
@@ -42,7 +47,7 @@ public class RequestLimitFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         // ip频繁访问黑名单(需要开启Redis支持)
         String token = RequestHeaderContext.getInstance().token;
-        UserLoginVO e = StringUtils.isNotBlank(token) ? redisUtils.getToken(token, UserLoginVO.class) : null;
+        User e = StringUtils.isNotBlank(token) ? redisUtils.getToken(token, User.class) : null;
         String mobile = CheckUtils.isNotEmpty(e) ? e.getUserPhone() : null;
         String ip = IPUtils.getIpAddr(request);
         String imei = RequestHeaderContext.getInstance().deviceId;
@@ -62,7 +67,7 @@ public class RequestLimitFilter implements Filter {
                     return;
                 }
             }
-            boolean isBlacklist = isBlacklist(request, mobile, url, ip, imei, key, globLimitTime, globLimitCount);
+            boolean isBlacklist = isBlacklist(request, e, url, ip, imei, key, globLimitTime, globLimitCount);
             if (isBlacklist) {
                 outprintJSON(response);
                 return;
@@ -75,7 +80,7 @@ public class RequestLimitFilter implements Filter {
      * 频繁访问永久加入黑名单
      *
      * @param request
-     * @param username
+     * @param user
      * @param ip
      * @param imei
      * @param limitTime
@@ -84,15 +89,19 @@ public class RequestLimitFilter implements Filter {
      * @date 2018年5月14日 下午8:36:19
      * @author wangj@boruijinfu.com
      */
-    public boolean isBlacklist(HttpServletRequest request, String username, String url, String ip, String imei, String key, long limitTime, int limitCount) {
+    public boolean isBlacklist(HttpServletRequest request, User user, String url, String ip, String imei, String key, long limitTime, int limitCount) {
         Long count = redisTemplate.opsForValue().increment(key, Constants.INIT_INCREMENT_VALUE);
         if (CheckUtils.isNotEmpty(count) && count.equals(Constants.INIT_INCREMENT_VALUE)) {
             redisTemplate.expire(key, limitTime, TimeUnit.SECONDS);
         }
         if (count > limitCount) {
-//            BlackListEntity blacklist = new BlackListEntity(username, ip, "用户频繁" + url + "访问请求命中系统全局频繁访问规则，已加入黑名单" + count, imei, Constants.BLACK_LIST_0, key);
-//            blackListService.insert(blacklist);
-            redisUtils.set(key, JSON.toJSONString(/*blacklist*/null), -1);
+            RestResult<BlackUser> restResult = new RestResult<>();
+            if (CheckUtils.isNotEmpty(user)) {
+                StringBuffer description = new StringBuffer();
+                description.append("该用户频繁请求 : ").append(url).append(" 这个接口").append(count).append("次！将其加入黑名单！");
+                restResult = blackUserExtendService.addBlackUserWithRedis(user, description.toString(), ip, imei);
+            }
+            redisUtils.set(key, JSON.toJSONString(JSON.toJSONString(restResult.getData())), -1);
             return true;
         }
         return false;

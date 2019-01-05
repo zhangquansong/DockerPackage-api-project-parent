@@ -47,4 +47,20 @@ public class RedisExtendUtils {
         user.setExpireTime(DateUtils.addDay(new Date(), Constants.INTEGER_VALUE_1));
         redisUtils.setToken(token, user);
     }
+
+    /**
+     * @param userId 用户id
+     * @return void
+     * @Author zhangquansong
+     * @Date 2019/1/5 0005 下午 6:22
+     * @Description :   删除用户token
+     **/
+    @Async
+    public void loginOutToken(Long userId) {
+        Map<String, Object> getToken = redisUtils.hmgetToken(String.valueOf(userId));
+        if (null != getToken && StringUtils.isNotBlank((String) getToken.get(Constants.KEY_NAME_TOKEN))) { // 删除用户上次登录的token
+            redisUtils.deleteToken((String) getToken.get(Constants.KEY_NAME_TOKEN));
+            redisUtils.deleteToken(String.valueOf(userId));
+        }
+    }
 }
