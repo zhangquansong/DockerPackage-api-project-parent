@@ -21,6 +21,7 @@
         <module>api-dao</module>
         <module>api-service</module>
         <module>api-web</module>
+        <module>api-freemarker</module>
         <module>api-mybatis-generator</module>
     </modules>
 
@@ -39,7 +40,8 @@
         <api.service.version>1.0.0-SNAPSHOT</api.service.version>
         <api.dao.version>1.0.0-SNAPSHOT</api.dao.version>
         <api.web.version>1.0.0-SNAPSHOT</api.web.version>
-
+        <api.freemarker.version>1.0.0-SNAPSHOT</api.freemarker.version>
+        <api.mybatis.generator.version>1.0.0-SNAPSHOT</api.mybatis.generator.version>
         <start-web-class>com.clt.api.ApiWebApplication</start-web-class>
     </properties>
 

@@ -112,6 +112,7 @@ public class UserController {
 
     @Login
     @Sign
+//    @SameUrlData
     @PostMapping("/getUser")
     public User getUser(@LoginUser User user) {
         return user;

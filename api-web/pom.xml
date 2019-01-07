@@ -22,8 +22,8 @@
     <dependencies>
         <dependency>
             <groupId>com.clt.api</groupId>
-            <artifactId>api-service</artifactId>
-            <version>${api.service.version}</version>
+            <artifactId>api-freemarker</artifactId>
+            <version>${api.freemarker.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>commons-fileupload</groupId>

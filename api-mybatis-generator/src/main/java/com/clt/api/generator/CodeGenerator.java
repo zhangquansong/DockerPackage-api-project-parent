@@ -74,10 +74,7 @@ public class CodeGenerator {
         } else if ("api-web".equals(model)) {
             pc.setParent(rb.getString("PackageParent"));
             pc.setController(rb.getString("PackageController"));
-        } /*else if ("api-commons".equals(model)) {
-            pc.setParent("com.clt.api");
-            pc.setController("param");
-        }*/
+        }
         mpg.setPackageInfo(pc);
 
         // 自定义配置
