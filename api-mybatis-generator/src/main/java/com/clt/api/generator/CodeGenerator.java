@@ -38,46 +38,46 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         gc.setOpen(false);
-        gc.setOutputDir(path + "/src/main/java");
+        gc.setOutputDir(path + rb.getString("OutputDir"));
         gc.setFileOverride(true);
         gc.setActiveRecord(true);
         gc.setEnableCache(false);// XML 二级缓存
         gc.setBaseResultMap(true);
         gc.setBaseColumnList(true);
-        gc.setAuthor("zhangquansong");
-        gc.setMapperName("%sMapper");
-        gc.setXmlName("%sMapper");
-        gc.setServiceName("%sService");
-        gc.setServiceImplName("%sServiceImpl");
-        gc.setControllerName("%sController");
+        gc.setAuthor(rb.getString("Author"));
+        gc.setMapperName(rb.getString("MapperName"));
+        gc.setXmlName(rb.getString("XmlName"));
+        gc.setServiceName(rb.getString("ServiceName"));
+        gc.setServiceImplName(rb.getString("ServiceImplName"));
+        gc.setControllerName(rb.getString("ControllerName"));
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
-        dsc.setUrl(rb.getString("url"));
-        dsc.setDriverName("com.mysql.jdbc.Driver");
-        dsc.setUsername(rb.getString("userName"));
-        dsc.setPassword(rb.getString("password"));
+        dsc.setUrl(rb.getString("Url"));
+        dsc.setDriverName(rb.getString("DriverName"));
+        dsc.setUsername(rb.getString("UserName"));
+        dsc.setPassword(rb.getString("Password"));
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
         if ("api-dao".equals(model)) {
-            pc.setParent("com.clt.api");
-            pc.setEntity("entity");
-            pc.setMapper("mapper");
+            pc.setParent(rb.getString("PackageParent"));
+            pc.setEntity(rb.getString("PackageEntity"));
+            pc.setMapper(rb.getString("PackageMapper"));
         } else if ("api-service".equals(model)) {
-            pc.setParent("com.clt.api");
-            pc.setServiceImpl("service.impl");
-            pc.setService("service");
+            pc.setParent(rb.getString("PackageParent"));
+            pc.setServiceImpl(rb.getString("PackageServiceImpl"));
+            pc.setService(rb.getString("PackageService"));
         } else if ("api-web".equals(model)) {
-            pc.setParent("com.clt.api");
-            pc.setController("controller");
-        } else if ("api-commons".equals(model)) {
+            pc.setParent(rb.getString("PackageParent"));
+            pc.setController(rb.getString("PackageController"));
+        } /*else if ("api-commons".equals(model)) {
             pc.setParent("com.clt.api");
             pc.setController("param");
-        }
+        }*/
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -91,28 +91,28 @@ public class CodeGenerator {
         List<FileOutConfig> focList = new ArrayList<>();
 
         if ("api-dao".equals(model)) {
-            focList.add(new FileOutConfig("/templates/mapper.xml.vm") {
+            focList.add(new FileOutConfig(rb.getString("DaoTemplatePath")) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输入文件名称
-                    return rb.getString("OutputDirXml") + "/mapper/" + tableInfo.getEntityName() + "Mapper.xml";
+                    return rb.getString("OutputDirXml") + "/mapper/" + tableInfo.getEntityName() + rb.getString("DaoTemplateFileName");
                 }
             });
         }
 
         if ("api-commons".equals(model)) {
-            focList.add(new FileOutConfig("templates/mybatis/paramCreate.java.vm.ftl") {
+            focList.add(new FileOutConfig(rb.getString("CommonsCreateTemplatePath")) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输入文件名称
-                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + "CreateParam.java";
+                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + rb.getString("CommonsCreateTemplateFileName");
                 }
             });
-            focList.add(new FileOutConfig("templates/mybatis/paramEdit.java.vm.ftl") {
+            focList.add(new FileOutConfig(rb.getString("CommonsEditTemplatePath")) {
                 @Override
                 public String outputFile(TableInfo tableInfo) {
                     // 自定义输入文件名称
-                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + "EditParam.java";
+                    return rb.getString("OutputDirParam") + "/" + tableInfo.getEntityName() + rb.getString("CommonsEditTemplateFileName");
                 }
             });
         }
@@ -122,20 +122,20 @@ public class CodeGenerator {
         // 关闭默认 xml 生成，调整生成 至 根目录
         TemplateConfig tc = new TemplateConfig();
         if ("api-dao".equals(model)) {
-            tc.setMapper("/templates/mybatis/mapper.java.vm.ftl");
+            tc.setMapper(rb.getString("DaoTemplateConfigPath"));
             tc.setController(null);
             tc.setService(null);
             tc.setServiceImpl(null);
             tc.setXml(null);
         } else if ("api-service".equals(model)) {
-            tc.setService("/templates/mybatis/service.java.vm.ftl");
-            tc.setServiceImpl("/templates/mybatis/serviceImpl.java.vm.ftl");
+            tc.setService(rb.getString("ServiceTemplateConfigPath"));
+            tc.setServiceImpl(rb.getString("ServiceImplTemplateConfigPath"));
             tc.setController(null);
             tc.setEntity(null);
             tc.setMapper(null);
             tc.setXml(null);
         } else if ("api-web".equals(model)) {
-            tc.setController("/templates/mybatis/controller.java.vm.ftl");
+            tc.setController(rb.getString("ControllerTemplateConfigPath"));
             tc.setService(null);
             tc.setServiceImpl(null);
             tc.setEntity(null);
@@ -155,7 +155,7 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
-        strategy.setInclude(new String[]{rb.getString("tableName")});
+        strategy.setInclude(new String[]{rb.getString("TableName")});
         mpg.setStrategy(strategy);
         mpg.execute();
 

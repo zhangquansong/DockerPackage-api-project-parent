@@ -91,8 +91,8 @@ clt:
       appsecret: D580AB0E7BEAEAB465463444BC1A9533                    #签名appsecret
       timeExpire: 1                                                  #请求有效时长
   glob:
-      limitTime: 5       # 全局限制访问参数设置，单位秒
-      limitCount: 3    # 全局限制访问参数设置，单位次
+      limitTime: 1       # 全局限制访问参数设置，单位秒
+      limitCount: 50    # 全局限制访问参数设置，单位次
 
 
 

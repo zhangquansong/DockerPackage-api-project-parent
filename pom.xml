@@ -21,6 +21,7 @@
         <module>api-dao</module>
         <module>api-service</module>
         <module>api-web</module>
+        <module>api-mybatis-generator</module>
     </modules>
 
     <properties>
