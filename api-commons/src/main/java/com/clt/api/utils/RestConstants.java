@@ -25,7 +25,7 @@ public enum RestConstants {
     BIZ_TIMESTAMP_NULL_10007(10007, "timeStamp为空"), REQUEST_INVALID_CORE_10008(10008, "签名检查异常:非法请求"),
     REQUEST_EXPIRED_CODE_10009(10009, "签名检查异常:请求已过期,请检查系统时间"), REQUEST_SIGN_ERROR_CODE_10010(10010, "签名检查异常:签名错误"),
     REQUEST_PARAM_ERROR_CODE_10011(10011, "签名检查异常:参数错误"), SAMEURLDATA_REPEAT_10012(10012, "请勿重复请求"),
-    BLACK_USER_10013(10013,"账户被限制，请联系客服");
+    BLACK_USER_10013(10013, "账户被限制，请联系客服");
 
     private final Integer code;//状态吗
     private final String message;//信息

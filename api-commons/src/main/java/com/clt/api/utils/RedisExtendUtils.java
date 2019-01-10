@@ -1,6 +1,8 @@
 package com.clt.api.utils;
 
+import com.clt.api.mq.RewardMq;
 import com.clt.api.result.UserLoginVO;
+import com.clt.api.sender.RabbitAckSender;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,8 @@ public class RedisExtendUtils {
 
     @Autowired
     RedisUtils redisUtils;
+    @Autowired
+    private RabbitAckSender rabbitAckSender;
 
     /**
      * 登录token操作
@@ -46,6 +50,8 @@ public class RedisExtendUtils {
         redisUtils.hmsetToken(String.valueOf(user.getId()), map);
         user.setExpireTime(DateUtils.addDay(new Date(), Constants.INTEGER_VALUE_1));
         redisUtils.setToken(token, user);
+        RewardMq rewardMq = new RewardMq(user.getId(), user.getUserPhone(), String.valueOf(user.getUserType()), "用户登录奖励");
+        rabbitAckSender.sendReward(rewardMq);
     }
 
     /**
