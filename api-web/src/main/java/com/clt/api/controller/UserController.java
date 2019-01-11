@@ -13,6 +13,7 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -77,6 +78,7 @@ public class UserController {
      *
      * @return
      */
+    @Cacheable("userListAll")
     @PostMapping("/listAll")
     @ResponseBody
     public RestResult<List<User>> listAll() {

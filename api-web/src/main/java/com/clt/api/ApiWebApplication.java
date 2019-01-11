@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableHystrixDashboard
 @EnableWebMvc
 @EnableAsync //开启异步调用
+@EnableCaching //开启缓存
 @MapperScan(basePackages = {"com.clt.api.mapper"})
 public class ApiWebApplication extends SpringBootServletInitializer {
 
